@@ -135,6 +135,42 @@
     #cancelBtn {
       background: #ccc;
     }
+    /* Admin panel (hidden by default) */
+    #adminPanel {
+      display: none;
+      margin-top: 30px;
+      padding: 15px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    }
+    #adminPanel h2 {
+      color: #b71c1c;
+    }
+    .adminCard {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 10px;
+      margin-bottom: 10px;
+      background: #fafafa;
+    }
+    .approveBtn {
+      background: #2e7d32;
+      color: white;
+      padding: 5px 10px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-right: 5px;
+    }
+    .denyBtn {
+      background: #c62828;
+      color: white;
+      padding: 5px 10px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -165,43 +201,59 @@
 
     <section id="crime">
       <h2>🚨 Crime News</h2>
-      <div class="card">
-        <h3>Sample Crime Headline</h3>
-        <p>Crime update details go here. Replace this with real stories about Dordrecht.</p>
+      <div id="crimeSection">
+        <div class="card">
+          <h3>Sample Crime Headline</h3>
+          <p>Crime update details go here. Replace this with real stories about Dordrecht.</p>
+        </div>
       </div>
     </section>
 
     <section id="sports">
       <h2>⚽ Sports</h2>
-      <div class="card">
-        <h3>Local Match Results</h3>
-        <p>Latest sports updates will be posted here.</p>
+      <div id="sportsSection">
+        <div class="card">
+          <h3>Local Match Results</h3>
+          <p>Latest sports updates will be posted here.</p>
+        </div>
       </div>
     </section>
 
     <section id="events">
       <h2>🎉 Events & Festivals</h2>
-      <div class="card">
-        <h3>Upcoming Festival</h3>
-        <p>Event details go here. Add upcoming local events in Dordrecht.</p>
+      <div id="eventsSection">
+        <div class="card">
+          <h3>Upcoming Festival</h3>
+          <p>Event details go here. Add upcoming local events in Dordrecht.</p>
+        </div>
       </div>
     </section>
 
     <section id="weather">
       <h2>☀️ Weather</h2>
-      <div class="card">
-        <h3>Today’s Forecast</h3>
-        <p>Sunny with light winds. High: 24°C, Low: 12°C.</p>
+      <div id="weatherSection">
+        <div class="card">
+          <h3>Today’s Forecast</h3>
+          <p>Sunny with light winds. High: 24°C, Low: 12°C.</p>
+        </div>
       </div>
     </section>
 
     <section id="stories">
       <h2>📝 Community Stories</h2>
-      <div class="card">
-        <h3>Featured Story</h3>
-        <p>Share inspiring or important local stories here.</p>
+      <div id="storiesSection">
+        <div class="card">
+          <h3>Featured Story</h3>
+          <p>Share inspiring or important local stories here.</p>
+        </div>
       </div>
     </section>
+
+    <!-- ADMIN PANEL (only you see this) -->
+    <div id="adminPanel">
+      <h2>🔒 Admin Approval Panel</h2>
+      <div id="pendingNews"></div>
+    </div>
   </div>
 
   <footer>
@@ -213,6 +265,8 @@
     const addNewsForm = document.getElementById("addNewsForm");
     const cancelBtn = document.getElementById("cancelBtn");
     const submitNewsBtn = document.getElementById("submitNewsBtn");
+    const adminPanel = document.getElementById("adminPanel");
+    const pendingNewsDiv = document.getElementById("pendingNews");
 
     let newsArray = [];
 
@@ -236,9 +290,10 @@
       if (title && content) {
         const newsItem = { title, content, status: "pending" };
         newsArray.push(newsItem);
-
         alert("✅ News submitted for approval!");
-        
+
+        renderPendingNews();
+
         // Reset form
         document.getElementById("newsTitle").value = "";
         document.getElementById("newsContent").value = "";
@@ -248,6 +303,43 @@
         alert("⚠️ Please fill in all fields!");
       }
     });
+
+    // Render pending news in admin panel
+    function renderPendingNews() {
+      adminPanel.style.display = "block";
+      pendingNewsDiv.innerHTML = "";
+      newsArray.forEach((item, index) => {
+        if (item.status === "pending") {
+          const div = document.createElement("div");
+          div.className = "adminCard";
+          div.innerHTML = `
+            <h4>${item.title}</h4>
+            <p>${item.content}</p>
+            <button class="approveBtn" onclick="approveNews(${index})">Approve</button>
+            <button class="denyBtn" onclick="denyNews(${index})">Deny</button>
+          `;
+          pendingNewsDiv.appendChild(div);
+        }
+      });
+    }
+
+    // Approve news (adds to stories section by default)
+    function approveNews(index) {
+      newsArray[index].status = "approved";
+      const section = document.getElementById("storiesSection"); // default place
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `<h3>${newsArray[index].title}</h3><p>${newsArray[index].content}</p>`;
+      section.appendChild(card);
+
+      renderPendingNews();
+    }
+
+    // Deny news
+    function denyNews(index) {
+      newsArray[index].status = "denied";
+      renderPendingNews();
+    }
   </script>
 </body>
 </html>
