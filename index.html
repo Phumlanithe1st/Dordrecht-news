@@ -20,15 +20,8 @@
       top: 0;
       z-index: 1000;
     }
-    header h1 {
-      margin: 0;
-      font-size: 24px;
-    }
-    header p {
-      margin: 5px 0 0;
-      font-size: 14px;
-      opacity: 0.9;
-    }
+    header h1 { margin: 0; font-size: 24px; }
+    header p { margin: 5px 0 0; font-size: 14px; opacity: 0.9; }
     nav {
       display: flex;
       overflow-x: auto;
@@ -47,22 +40,10 @@
       white-space: nowrap;
       transition: background 0.3s;
     }
-    nav a:hover {
-      background: #42a5f5;
-    }
-    .container {
-      padding: 15px;
-      max-width: 900px;
-      margin: auto;
-    }
-    section {
-      margin-bottom: 30px;
-    }
-    section h2 {
-      font-size: 20px;
-      margin-bottom: 15px;
-      color: #0d47a1;
-    }
+    nav a:hover { background: #42a5f5; }
+    .container { padding: 15px; max-width: 900px; margin: auto; }
+    section { margin-bottom: 30px; }
+    section h2 { font-size: 20px; margin-bottom: 15px; color: #0d47a1; }
     .card {
       background: #fff;
       border-radius: 12px;
@@ -71,19 +52,9 @@
       box-shadow: 0 3px 6px rgba(0,0,0,0.1);
       transition: transform 0.2s;
     }
-    .card:hover {
-      transform: scale(1.02);
-    }
-    .card h3 {
-      margin-top: 0;
-      font-size: 18px;
-      color: #222;
-    }
-    .card p {
-      font-size: 14px;
-      line-height: 1.6;
-      margin: 8px 0 0;
-    }
+    .card:hover { transform: scale(1.02); }
+    .card h3 { margin-top: 0; font-size: 18px; color: #222; }
+    .card p { font-size: 14px; line-height: 1.6; margin: 8px 0 0; }
     footer {
       text-align: center;
       background: #0d47a1;
@@ -94,82 +65,53 @@
     }
     /* Add News styles */
     #showFormBtn {
-      background: #0d47a1;
-      color: white;
-      padding: 10px 16px;
-      border: none;
-      border-radius: 20px;
-      cursor: pointer;
-      margin-bottom: 15px;
+      background: #0d47a1; color: white; padding: 10px 16px;
+      border: none; border-radius: 20px; cursor: pointer; margin-bottom: 15px;
     }
-    #showFormBtn:hover {
-      background: #1565c0;
-    }
+    #showFormBtn:hover { background: #1565c0; }
     #addNewsForm {
+      display: none; margin-bottom: 20px; padding: 15px;
+      background: #fff; border-radius: 12px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    }
+    #addNewsForm input, #addNewsForm textarea {
+      width: 100%; margin: 8px 0; padding: 10px;
+      border: 1px solid #ccc; border-radius: 8px; font-size: 14px;
+    }
+    #addNewsForm button {
+      padding: 10px 16px; margin-right: 8px;
+      border: none; border-radius: 8px; cursor: pointer;
+    }
+    #submitNewsBtn { background: #0d47a1; color: white; }
+    #cancelBtn { background: #ccc; }
+
+    /* Admin Login & Panel */
+    #adminLogin, #adminPanel {
       display: none;
-      margin-bottom: 20px;
+      margin: 20px 0;
       padding: 15px;
       background: #fff;
       border-radius: 12px;
       box-shadow: 0 3px 6px rgba(0,0,0,0.1);
     }
-    #addNewsForm input, #addNewsForm textarea {
-      width: 100%;
-      margin: 8px 0;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 14px;
+    #adminLogin input {
+      padding: 10px; margin: 5px 0;
+      border: 1px solid #ccc; border-radius: 8px; width: 100%;
     }
-    #addNewsForm button {
-      padding: 10px 16px;
-      margin-right: 8px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
+    #adminLogin button {
+      background: #0d47a1; color: #fff;
+      padding: 10px 16px; border: none;
+      border-radius: 8px; cursor: pointer; margin-top: 10px;
     }
-    #submitNewsBtn {
-      background: #0d47a1;
-      color: white;
+    #pendingNews .card {
+      border-left: 5px solid orange;
     }
-    #cancelBtn {
-      background: #ccc;
+    .approveBtn, .rejectBtn {
+      padding: 6px 10px; border: none; border-radius: 6px;
+      margin: 5px; cursor: pointer; font-size: 12px;
     }
-
-    /* Admin Panel */
-    #adminPanel {
-      display: none;
-      margin-top: 30px;
-      padding: 15px;
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.15);
-    }
-    #adminPanel h2 {
-      color: #b71c1c;
-    }
-    .pendingItem {
-      background: #f9f9f9;
-      padding: 10px;
-      margin: 10px 0;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-    }
-    .pendingItem button {
-      margin-right: 8px;
-      padding: 6px 12px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-    .approveBtn {
-      background: #2e7d32;
-      color: #fff;
-    }
-    .rejectBtn {
-      background: #c62828;
-      color: #fff;
-    }
+    .approveBtn { background: green; color: white; }
+    .rejectBtn { background: red; color: white; }
   </style>
 </head>
 <body>
@@ -198,7 +140,19 @@
       <button id="cancelBtn">❌ Cancel</button>
     </div>
 
-    <!-- News Sections -->
+    <!-- Admin Login -->
+    <div id="adminLogin">
+      <h3>🔑 Admin Login</h3>
+      <input type="password" id="adminPass" placeholder="Enter password">
+      <button id="loginBtn">Login</button>
+    </div>
+
+    <!-- Admin Panel -->
+    <div id="adminPanel">
+      <h3>⚙️ Pending News Approval</h3>
+      <div id="pendingNews"></div>
+    </div>
+
     <section id="crime">
       <h2>🚨 Crime News</h2>
       <div class="card">
@@ -238,13 +192,6 @@
         <p>Share inspiring or important local stories here.</p>
       </div>
     </section>
-
-    <!-- Admin Panel (Only You See This) -->
-    <div id="adminPanel">
-      <h2>👨🏿‍💻 Admin Approval Panel</h2>
-      <div id="pendingList"></div>
-    </div>
-
   </div>
 
   <footer>
@@ -256,8 +203,10 @@
     const addNewsForm = document.getElementById("addNewsForm");
     const cancelBtn = document.getElementById("cancelBtn");
     const submitNewsBtn = document.getElementById("submitNewsBtn");
+    const adminLogin = document.getElementById("adminLogin");
     const adminPanel = document.getElementById("adminPanel");
-    const pendingList = document.getElementById("pendingList");
+    const loginBtn = document.getElementById("loginBtn");
+    const pendingNews = document.getElementById("pendingNews");
 
     let newsArray = [];
 
@@ -275,70 +224,4 @@
 
     // Submit news
     submitNewsBtn.addEventListener("click", () => {
-      const title = document.getElementById("newsTitle").value;
-      const content = document.getElementById("newsContent").value;
-
-      if (title && content) {
-        const newsItem = { title, content, status: "pending" };
-        newsArray.push(newsItem);
-
-        alert("✅ News submitted for approval!");
-
-        // Add to admin pending list
-        displayPendingNews();
-
-        // Reset form
-        document.getElementById("newsTitle").value = "";
-        document.getElementById("newsContent").value = "";
-        addNewsForm.style.display = "none";
-        showFormBtn.style.display = "inline-block";
-      } else {
-        alert("⚠️ Please fill in all fields!");
-      }
-    });
-
-    // Display pending items in admin panel
-    function displayPendingNews() {
-      pendingList.innerHTML = "";
-      newsArray.forEach((item, index) => {
-        if (item.status === "pending") {
-          const div = document.createElement("div");
-          div.classList.add("pendingItem");
-          div.innerHTML = `
-            <h3>${item.title}</h3>
-            <p>${item.content}</p>
-            <button class="approveBtn" onclick="approveNews(${index})">Approve</button>
-            <button class="rejectBtn" onclick="rejectNews(${index})">Reject</button>
-          `;
-          pendingList.appendChild(div);
-        }
-      });
-
-      if (pendingList.innerHTML !== "") {
-        adminPanel.style.display = "block";
-      }
-    }
-
-    // Approve news
-    function approveNews(index) {
-      newsArray[index].status = "approved";
-
-      const approvedCard = document.createElement("div");
-      approvedCard.classList.add("card");
-      approvedCard.innerHTML = `
-        <h3>${newsArray[index].title}</h3>
-        <p>${newsArray[index].content}</p>
-      `;
-      document.querySelector("#stories").appendChild(approvedCard);
-
-      displayPendingNews();
-    }
-
-    // Reject news
-    function rejectNews(index) {
-      newsArray[index].status = "rejected";
-      displayPendingNews();
-    }
-  </script>
-</body>
-</html>>
+      const title = document.getElement
