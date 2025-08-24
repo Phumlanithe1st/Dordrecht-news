@@ -2,8 +2,11 @@ const showFormBtn = document.getElementById("showFormBtn");
 const addNewsForm = document.getElementById("addNewsForm");
 const submitNewsBtn = document.getElementById("submitNewsBtn");
 const pendingNewsDiv = document.getElementById("pendingNews");
+const adminSection = document.getElementById("admin");
+const adminLink = document.getElementById("adminLink");
 
 let newsArray = [];
+const ADMIN_PASSWORD = "1612"; // 🔑 change this to your own password
 
 // Show form toggle
 showFormBtn.addEventListener("click", () => {
@@ -77,3 +80,15 @@ function rejectNews(index) {
   alert("❌ News rejected and removed.");
   updatePendingNews();
 }
+
+// Protect admin panel with password
+adminLink.addEventListener("click", (e) => {
+  e.preventDefault();
+  const password = prompt("Enter admin password:");
+  if (password === ADMIN_PASSWORD) {
+    adminSection.style.display = "block";
+    window.location.hash = "admin"; // scrolls to admin
+  } else {
+    alert("❌ Wrong password. Access denied.");
+  }
+});
