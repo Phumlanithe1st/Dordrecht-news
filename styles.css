@@ -1,45 +1,93 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
-  padding: 0;
-  background: #f9f9f9;
+  background: #f0f2f5;
   color: #333;
 }
-
 header {
-  background: #0077cc;
-  color: white;
-  padding: 1rem;
+  background: #0d47a1;
+  color: #fff;
+  padding: 20px;
   text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
-
-header h1 {
-  margin: 0;
+nav {
+  display: flex;
+  overflow-x: auto;
+  background: #1565c0;
+  padding: 10px 5px;
 }
-
-nav button {
-  background: white;
-  color: #0077cc;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 10px;
+nav a {
+  flex: 0 0 auto;
+  background: #1e88e5;
+  color: #fff;
+  padding: 10px 16px;
+  margin: 0 6px;
+  border-radius: 20px;
+  font-size: 14px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.3s;
 }
+nav a:hover { background: #42a5f5; }
 
-nav button:hover {
-  background: #005fa3;
+.container { padding: 15px; max-width: 900px; margin: auto; }
+section { margin-bottom: 30px; }
+section h2 { font-size: 20px; margin-bottom: 15px; color: #0d47a1; }
+
+.card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+.card:hover { transform: scale(1.02); }
+
+#showFormBtn {
+  background: #0d47a1;
   color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-bottom: 15px;
 }
+#addNewsForm {
+  display: none;
+  margin-bottom: 20px;
+  padding: 15px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+}
+#addNewsForm input, #addNewsForm textarea {
+  width: 100%;
+  margin: 8px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+}
+#addNewsForm button {
+  padding: 10px 16px;
+  margin-right: 8px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+#submitNewsBtn { background: #0d47a1; color: white; }
+#cancelBtn { background: #ccc; }
 
-#news-container {
-  padding: 1rem;
+#adminPanel {
+  display: none;
+  margin-top: 30px;
+  padding: 15px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
 }
-
-.news-item {
-  background: white;
-  margin: 0.5rem 0;
-  padding: 1rem;
-  border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
+#adminPanel h2 { color: #b71c1c; }
