@@ -1,39 +1,31 @@
 const showFormBtn = document.getElementById("showFormBtn");
 const addNewsForm = document.getElementById("addNewsForm");
-const cancelBtn = document.getElementById("cancelBtn");
 const submitNewsBtn = document.getElementById("submitNewsBtn");
-const adminPanel = document.getElementById("adminPanel");
 const pendingNewsDiv = document.getElementById("pendingNews");
 
 let newsArray = [];
 
-// Show form
+// Show form toggle
 showFormBtn.addEventListener("click", () => {
   addNewsForm.style.display = "block";
   showFormBtn.style.display = "none";
-});
-
-// Cancel form
-cancelBtn.addEventListener("click", () => {
-  addNewsForm.style.display = "none";
-  showFormBtn.style.display = "inline-block";
 });
 
 // Submit news
 submitNewsBtn.addEventListener("click", () => {
   const title = document.getElementById("newsTitle").value;
   const content = document.getElementById("newsContent").value;
+  const category = document.getElementById("newsCategory").value;
 
-  if (title && content) {
-    const newsItem = { title, content, status: "pending" };
+  if (title && content && category) {
+    const newsItem = { title, content, category, status: "pending" };
     newsArray.push(newsItem);
     updatePendingNews();
 
     alert("✅ News submitted for approval!");
-    
-    // Reset form
     document.getElementById("newsTitle").value = "";
     document.getElementById("newsContent").value = "";
+    document.getElementById("newsCategory").value = "";
     addNewsForm.style.display = "none";
     showFormBtn.style.display = "inline-block";
   } else {
@@ -41,33 +33,47 @@ submitNewsBtn.addEventListener("click", () => {
   }
 });
 
-// Update pending news in admin panel
+// Update pending news
 function updatePendingNews() {
   pendingNewsDiv.innerHTML = "";
   newsArray.forEach((item, index) => {
     if (item.status === "pending") {
       const div = document.createElement("div");
-      div.className = "card";
+      div.className = "admin-card";
       div.innerHTML = `
-        <h3>${item.title}</h3>
+        <h4>${item.title}</h4>
         <p>${item.content}</p>
-        <button onclick="approveNews(${index})">✅ Approve</button>
-        <button onclick="rejectNews(${index})">❌ Reject</button>
+        <small>Category: ${item.category}</small><br>
+        <button class="approve-btn" onclick="approveNews(${index})">Approve</button>
+        <button class="reject-btn" onclick="rejectNews(${index})">Reject</button>
       `;
       pendingNewsDiv.appendChild(div);
     }
   });
-  adminPanel.style.display = pendingNewsDiv.innerHTML ? "block" : "none";
 }
 
+// Approve news
 function approveNews(index) {
   newsArray[index].status = "approved";
+  const category = newsArray[index].category;
+  const section = document.getElementById(category);
+
+  if (section) {
+    const div = document.createElement("div");
+    div.className = "card";
+    div.innerHTML = `
+      <h3>${newsArray[index].title}</h3>
+      <p>${newsArray[index].content}</p>
+    `;
+    section.appendChild(div);
+  }
   alert("✔️ News approved and published!");
   updatePendingNews();
 }
 
+// Reject news
 function rejectNews(index) {
-  newsArray[index].status = "rejected";
-  alert("❌ News rejected!");
+  newsArray.splice(index, 1);
+  alert("❌ News rejected and removed.");
   updatePendingNews();
 }
