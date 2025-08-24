@@ -92,6 +92,49 @@
       margin-top: 30px;
       font-size: 14px;
     }
+    /* Add News styles */
+    #showFormBtn {
+      background: #0d47a1;
+      color: white;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      margin-bottom: 15px;
+    }
+    #showFormBtn:hover {
+      background: #1565c0;
+    }
+    #addNewsForm {
+      display: none;
+      margin-bottom: 20px;
+      padding: 15px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    }
+    #addNewsForm input, #addNewsForm textarea {
+      width: 100%;
+      margin: 8px 0;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+    #addNewsForm button {
+      padding: 10px 16px;
+      margin-right: 8px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    #submitNewsBtn {
+      background: #0d47a1;
+      color: white;
+    }
+    #cancelBtn {
+      background: #ccc;
+    }
   </style>
 </head>
 <body>
@@ -109,6 +152,17 @@
   </nav>
 
   <div class="container">
+
+    <!-- Add News Button + Form -->
+    <button id="showFormBtn">➕ Add News</button>
+    <div id="addNewsForm">
+      <h3>Add News</h3>
+      <input type="text" id="newsTitle" placeholder="Enter news title" required>
+      <textarea id="newsContent" placeholder="Enter news content" required></textarea>
+      <button id="submitNewsBtn">✅ Submit</button>
+      <button id="cancelBtn">❌ Cancel</button>
+    </div>
+
     <section id="crime">
       <h2>🚨 Crime News</h2>
       <div class="card">
@@ -153,52 +207,12 @@
   <footer>
     <p>&copy; 2025 Dordrecht News | Built by Phumlani 🚶🏿‍♂️🐐</p>
   </footer>
-</body>
-</html>
-
-
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dordrecht News</title>
-  <style>
-    body { font-family: Arial, sans-serif; padding: 20px; background: #f9f9f9; }
-    h1 { color: #333; }
-    #news-list { margin-top: 20px; }
-    .news-item { padding: 10px; border-bottom: 1px solid #ddd; }
-    button { padding: 8px 12px; margin: 5px; border: none; border-radius: 5px; cursor: pointer; }
-    #addNewsForm { display: none; margin-top: 15px; padding: 15px; background: #fff; border: 1px solid #ccc; border-radius: 10px; }
-    input, textarea { width: 100%; margin: 5px 0; padding: 8px; border: 1px solid #ccc; border-radius: 5px; }
-  </style>
-</head>
-<body>
-  <h1>📰 Dordrecht News</h1>
-
-  <!-- Add News Button -->
-  <button id="showFormBtn">➕ Add News</button>
-
-  <!-- Hidden Form -->
-  <div id="addNewsForm">
-    <h3>Add News</h3>
-    <input type="text" id="newsTitle" placeholder="Enter news title" required>
-    <textarea id="newsContent" placeholder="Enter news content" required></textarea>
-    <button id="submitNewsBtn">✅ Submit</button>
-    <button id="cancelBtn">❌ Cancel</button>
-  </div>
-
-  <!-- News List -->
-  <div id="news-list"></div>
 
   <script>
     const showFormBtn = document.getElementById("showFormBtn");
     const addNewsForm = document.getElementById("addNewsForm");
     const cancelBtn = document.getElementById("cancelBtn");
     const submitNewsBtn = document.getElementById("submitNewsBtn");
-    const newsList = document.getElementById("news-list");
 
     let newsArray = [];
 
