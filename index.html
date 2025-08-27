@@ -18,56 +18,52 @@
     <a href="#events">Events</a>
     <a href="#weather">Weather</a>
     <a href="#stories">Stories</a>
-    <a href="#admin" id="adminLink">Admin</a>
   </nav>
 
   <div class="container">
-    <!-- Sections -->
     <section id="crime">
       <h2>🚨 Crime News</h2>
+      <div class="card">
+        <h3>Sample Crime Headline</h3>
+        <p>Crime update details go here. Replace this with real stories about Dordrecht.</p>
+      </div>
     </section>
 
     <section id="sports">
       <h2>⚽ Sports</h2>
+      <div class="card">
+        <h3>Local Match Results</h3>
+        <p>Latest sports updates will be posted here.</p>
+      </div>
     </section>
 
     <section id="events">
       <h2>🎉 Events & Festivals</h2>
+      <div class="card">
+        <h3>Upcoming Festival</h3>
+        <p>Event details go here. Add upcoming local events in Dordrecht.</p>
+      </div>
     </section>
 
     <section id="weather">
       <h2>☀️ Weather</h2>
+      <div class="card">
+        <h3>Today’s Forecast</h3>
+        <p>Sunny with light winds. High: 24°C, Low: 12°C.</p>
+      </div>
     </section>
 
     <section id="stories">
       <h2>📝 Community Stories</h2>
-    </section>
-
-    <!-- Add News Form -->
-    <section id="addNews">
-      <h2>➕ Submit News</h2>
-      <button id="showFormBtn">Add News</button>
-      <div id="addNewsForm" style="display: none;">
-        <input type="text" id="newsTitle" placeholder="Enter news title" required>
-        <textarea id="newsContent" placeholder="Enter news content" required></textarea>
-        <select id="newsCategory" required>
-          <option value="">-- Select Category --</option>
-          <option value="crime">🚨 Crime</option>
-          <option value="sports">⚽ Sports</option>
-          <option value="events">🎉 Events</option>
-          <option value="weather">☀️ Weather</option>
-          <option value="stories">📝 Stories</option>
-        </select>
-        <button id="submitNewsBtn">Submit</button>
+      <div class="card">
+        <h3>Featured Story</h3>
+        <p>Share inspiring or important local stories here.</p>
       </div>
     </section>
-
-    <!-- Admin Panel -->
-    <section id="admin" style="display: none;">
-      <h2>🔑 Admin Panel (Pending News)</h2>
-      <div id="pendingNews"></div>
-    </section>
   </div>
+
+  <!-- Floating Add Button (admin only later) -->
+  <button id="addNewsBtn">➕ Add News</button>
 
   <footer>
     <p>&copy; 2025 Dordrecht News | Built by Phumlani 🚶🏿‍♂️🐐</p>
