@@ -103,3 +103,19 @@ footer {
   font-size: 0.9rem;
   margin-top: 20px;
 }
+.local-star {
+  border-color: #0077ff;
+  background: #e8f2ff;
+}
+
+.local-star h2 {
+  font-size: 1.3em;
+  color: #0077ff;
+}
+
+.local-star img {
+  width: 100%;
+  max-width: 400px;
+  margin: 10px 0;
+  border-radius: 6px;
+}
