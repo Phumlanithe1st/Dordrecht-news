@@ -4,60 +4,73 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dordrecht News</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
-    <h1>Dordrecht News</h1>
-    <button id="adminBtn">Admin</button>
+    <h1>📰 Dordrecht News</h1>
+    <p>Local news, sports & community updates</p>
   </header>
 
-  <main id="news">
-    <!-- 🔥 Universal Garage Special Article -->
-    <article class="featured">
-      <h2>DORDRECHT CELEBRATES 100 YEARS OF SERVICE</h2>
-      <img src="garage100.jpg" alt="Universal Garage 100 Years">
-      <p>
-        The Greyling family welcomes you to the 100th birthday celebration of Universal Garage. 
-        We look forward to celebrating this milestone with all of our treasured clients, staff, friends and family. 
-        The Dordrecht community has built this business to be what it is, and we appreciate the support and loyalty 
-        that you – and the generations before – have shown towards Universal Garage.
-      </p>
-      <p>
-        It has been an honour to be at your service for the past century, and we look forward to the years to come. 
-        We have been blessed in abundance – to God be the glory! We trust you will enjoy this weekend of celebrations with us.
-      </p>
-      <p><em>– The Greyling Family</em></p>
-    </article>
+  <nav>
+    <a href="#crime">Crime</a>
+    <a href="#sports">Sports</a>
+    <a href="#events">Events</a>
+    <a href="#weather">Weather</a>
+    <a href="#stories">Stories</a>
+    <a href="#admin">Admin</a>
+  </nav>
 
-    <!-- Example News -->
-    <article>
-      <h2>Local Sports Update</h2>
-      <p>The Dordrecht football club secured another victory this weekend, keeping fans excited for the season.</p>
-    </article>
+  <div class="container">
+    <!-- Sections -->
+    <section id="crime">
+      <h2>🚨 Crime News</h2>
+    </section>
 
-    <article>
-      <h2>Community Clean-up Drive</h2>
-      <p>Residents gathered this Saturday to clean the main street and plant trees. A big step for a greener Dordrecht!</p>
-    </article>
-  </main>
+    <section id="sports">
+      <h2>⚽ Sports</h2>
+    </section>
 
-  <!-- 🔒 Hidden Admin Panel -->
-  <section id="adminPanel" class="hidden">
-    <h2>Admin Panel</h2>
-    <input type="password" id="adminPassword" placeholder="Enter Password">
-    <button id="loginBtn">Login</button>
+    <section id="events">
+      <h2>🎉 Events & Festivals</h2>
+    </section>
 
-    <div id="addNewsForm" class="hidden">
-      <h3>Add News Article</h3>
-      <input type="text" id="newsTitle" placeholder="News Title">
-      <textarea id="newsContent" placeholder="News Content"></textarea>
-      <button id="addNewsBtn">Add News</button>
-    </div>
-  </section>
+    <section id="weather">
+      <h2>☀️ Weather</h2>
+    </section>
+
+    <section id="stories">
+      <h2>📝 Community Stories</h2>
+    </section>
+
+    <!-- Add News Form -->
+    <section id="addNews">
+      <h2>➕ Submit News</h2>
+      <button id="showFormBtn">Add News</button>
+      <div id="addNewsForm" style="display: none;">
+        <input type="text" id="newsTitle" placeholder="Enter news title" required>
+        <textarea id="newsContent" placeholder="Enter news content" required></textarea>
+        <select id="newsCategory" required>
+          <option value="">-- Select Category --</option>
+          <option value="crime">🚨 Crime</option>
+          <option value="sports">⚽ Sports</option>
+          <option value="events">🎉 Events</option>
+          <option value="weather">☀️ Weather</option>
+          <option value="stories">📝 Stories</option>
+        </select>
+        <button id="submitNewsBtn">Submit</button>
+      </div>
+    </section>
+
+    <!-- Admin Panel -->
+    <section id="admin">
+      <h2>🔑 Admin Panel (Pending News)</h2>
+      <div id="pendingNews"></div>
+    </section>
+  </div>
 
   <footer>
-    <p>© 2025 Dordrecht News | Powered by the Community</p>
+    <p>&copy; 2025 Dordrecht News | Built by Phumlani 🚶🏿‍♂️🐐</p>
   </footer>
 
   <script src="script.js"></script>
