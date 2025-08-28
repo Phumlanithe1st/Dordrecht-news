@@ -9,9 +9,10 @@
 <body>
   <header>
     <h1>Dordrecht News</h1>
+    <button id="adminBtn">Admin</button>
   </header>
 
-  <main>
+  <main id="news">
     <!-- 🔥 Universal Garage Special Article -->
     <article class="featured">
       <h2>DORDRECHT CELEBRATES 100 YEARS OF SERVICE</h2>
@@ -41,8 +42,22 @@
     </article>
   </main>
 
+  <!-- 🔒 Hidden Admin Panel -->
+  <section id="adminPanel" class="hidden">
+    <h2>Admin Panel</h2>
+    <input type="password" id="adminPassword" placeholder="Enter Password">
+    <button id="loginBtn">Login</button>
+
+    <div id="addNewsForm" class="hidden">
+      <h3>Add News Article</h3>
+      <input type="text" id="newsTitle" placeholder="News Title">
+      <textarea id="newsContent" placeholder="News Content"></textarea>
+      <button id="addNewsBtn">Add News</button>
+    </div>
+  </section>
+
   <footer>
-    <p>© 2025 Dordrecht News | Powered by PhumlaniThiya</p>
+    <p>© 2025 Dordrecht News | Powered by the Community</p>
   </footer>
 
   <script src="script.js"></script>
