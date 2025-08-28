@@ -1,40 +1,73 @@
-// Password for admin login
-const ADMIN_PASSWORD = "1234"; // change this to your own
-
-const adminBtn = document.getElementById("adminBtn");
-const adminPanel = document.getElementById("adminPanel");
-const loginBtn = document.getElementById("loginBtn");
+const showFormBtn = document.getElementById("showFormBtn");
 const addNewsForm = document.getElementById("addNewsForm");
-const addNewsBtn = document.getElementById("addNewsBtn");
-const newsSection = document.getElementById("news");
+const cancelBtn = document.getElementById("cancelBtn");
+const submitNewsBtn = document.getElementById("submitNewsBtn");
+const adminPanel = document.getElementById("adminPanel");
+const pendingNewsDiv = document.getElementById("pendingNews");
 
-adminBtn.addEventListener("click", () => {
-  adminPanel.classList.toggle("hidden");
+let newsArray = [];
+
+// Show form
+showFormBtn.addEventListener("click", () => {
+  addNewsForm.style.display = "block";
+  showFormBtn.style.display = "none";
 });
 
-loginBtn.addEventListener("click", () => {
-  const password = document.getElementById("adminPassword").value;
-  if (password === ADMIN_PASSWORD) {
-    addNewsForm.classList.remove("hidden");
-    alert("Login successful!");
-  } else {
-    alert("Wrong password!");
-  }
+// Cancel form
+cancelBtn.addEventListener("click", () => {
+  addNewsForm.style.display = "none";
+  showFormBtn.style.display = "inline-block";
 });
 
-addNewsBtn.addEventListener("click", () => {
+// Submit news
+submitNewsBtn.addEventListener("click", () => {
   const title = document.getElementById("newsTitle").value;
   const content = document.getElementById("newsContent").value;
 
   if (title && content) {
-    const newArticle = document.createElement("article");
-    newArticle.innerHTML = `<h2>${title}</h2><p>${content}</p>`;
-    newsSection.prepend(newArticle); // show newest on top
+    const newsItem = { title, content, status: "pending" };
+    newsArray.push(newsItem);
+    updatePendingNews();
 
-    // Clear form
+    alert("✅ News submitted for approval!");
+    
+    // Reset form
     document.getElementById("newsTitle").value = "";
     document.getElementById("newsContent").value = "";
+    addNewsForm.style.display = "none";
+    showFormBtn.style.display = "inline-block";
   } else {
-    alert("Please enter both title and content.");
+    alert("⚠️ Please fill in all fields!");
   }
 });
+
+// Update pending news in admin panel
+function updatePendingNews() {
+  pendingNewsDiv.innerHTML = "";
+  newsArray.forEach((item, index) => {
+    if (item.status === "pending") {
+      const div = document.createElement("div");
+      div.className = "card";
+      div.innerHTML = `
+        <h3>${item.title}</h3>
+        <p>${item.content}</p>
+        <button onclick="approveNews(${index})">✅ Approve</button>
+        <button onclick="rejectNews(${index})">❌ Reject</button>
+      `;
+      pendingNewsDiv.appendChild(div);
+    }
+  });
+  adminPanel.style.display = pendingNewsDiv.innerHTML ? "block" : "none";
+}
+
+function approveNews(index) {
+  newsArray[index].status = "approved";
+  alert("✔️ News approved and published!");
+  updatePendingNews();
+}
+
+function rejectNews(index) {
+  newsArray[index].status = "rejected";
+  alert("❌ News rejected!");
+  updatePendingNews();
+}
