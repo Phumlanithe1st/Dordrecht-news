@@ -4,7 +4,115 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dordrecht News</title>
-  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      background: #f0f2f5;
+      color: #333;
+    }
+    header {
+      background: #0d47a1;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    header h1 { margin: 0; font-size: 24px; }
+    header p { margin: 5px 0 0; font-size: 14px; opacity: 0.9; }
+    nav {
+      display: flex;
+      overflow-x: auto;
+      background: #1565c0;
+      padding: 10px 5px;
+    }
+    nav a {
+      flex: 0 0 auto;
+      background: #1e88e5;
+      color: #fff;
+      padding: 10px 16px;
+      margin: 0 6px;
+      border-radius: 20px;
+      font-size: 14px;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background 0.3s;
+    }
+    nav a:hover { background: #42a5f5; }
+    .container { padding: 15px; max-width: 900px; margin: auto; }
+    section { margin-bottom: 30px; }
+    section h2 { font-size: 20px; margin-bottom: 15px; color: #0d47a1; }
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 15px;
+      margin-bottom: 15px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+    .card:hover { transform: scale(1.02); }
+    .card h3 { margin-top: 0; font-size: 18px; color: #222; }
+    .card p { font-size: 14px; line-height: 1.6; margin: 8px 0 0; }
+    footer {
+      text-align: center;
+      background: #0d47a1;
+      color: #fff;
+      padding: 20px;
+      margin-top: 30px;
+      font-size: 14px;
+    }
+    /* Add News styles */
+    #showFormBtn {
+      background: #0d47a1; color: white; padding: 10px 16px;
+      border: none; border-radius: 20px; cursor: pointer; margin-bottom: 15px;
+    }
+    #showFormBtn:hover { background: #1565c0; }
+    #addNewsForm {
+      display: none; margin-bottom: 20px; padding: 15px;
+      background: #fff; border-radius: 12px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    }
+    #addNewsForm input, #addNewsForm textarea {
+      width: 100%; margin: 8px 0; padding: 10px;
+      border: 1px solid #ccc; border-radius: 8px; font-size: 14px;
+    }
+    #addNewsForm button {
+      padding: 10px 16px; margin-right: 8px;
+      border: none; border-radius: 8px; cursor: pointer;
+    }
+    #submitNewsBtn { background: #0d47a1; color: white; }
+    #cancelBtn { background: #ccc; }
+
+    /* Admin Login & Panel */
+    #adminLogin, #adminPanel {
+      display: none;
+      margin: 20px 0;
+      padding: 15px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    }
+    #adminLogin input {
+      padding: 10px; margin: 5px 0;
+      border: 1px solid #ccc; border-radius: 8px; width: 100%;
+    }
+    #adminLogin button {
+      background: #0d47a1; color: #fff;
+      padding: 10px 16px; border: none;
+      border-radius: 8px; cursor: pointer; margin-top: 10px;
+    }
+    #pendingNews .card {
+      border-left: 5px solid orange;
+    }
+    .approveBtn, .rejectBtn {
+      padding: 6px 10px; border: none; border-radius: 6px;
+      margin: 5px; cursor: pointer; font-size: 12px;
+    }
+    .approveBtn { background: green; color: white; }
+    .rejectBtn { background: red; color: white; }
+  </style>
 </head>
 <body>
   <header>
@@ -18,54 +126,71 @@
     <a href="#events">Events</a>
     <a href="#weather">Weather</a>
     <a href="#stories">Stories</a>
-    <a href="#admin">Admin</a>
   </nav>
 
   <div class="container">
-    <!-- Sections -->
+
+    <!-- Add News Button + Form -->
+    <button id="showFormBtn">➕ Add News</button>
+    <div id="addNewsForm">
+      <h3>Add News</h3>
+      <input type="text" id="newsTitle" placeholder="Enter news title" required>
+      <textarea id="newsContent" placeholder="Enter news content" required></textarea>
+      <button id="submitNewsBtn">✅ Submit</button>
+      <button id="cancelBtn">❌ Cancel</button>
+    </div>
+
+    <!-- Admin Login -->
+    <div id="adminLogin">
+      <h3>🔑 Admin Login</h3>
+      <input type="password" id="adminPass" placeholder="Enter password">
+      <button id="loginBtn">Login</button>
+    </div>
+
+    <!-- Admin Panel -->
+    <div id="adminPanel">
+      <h3>⚙️ Pending News Approval</h3>
+      <div id="pendingNews"></div>
+    </div>
+
     <section id="crime">
       <h2>🚨 Crime News</h2>
+      <div class="card">
+        <h3>Sample Crime Headline</h3>
+        <p>Crime update details go here. Replace this with real stories about Dordrecht.</p>
+      </div>
     </section>
 
     <section id="sports">
       <h2>⚽ Sports</h2>
+      <div class="card">
+        <h3>Local Match Results</h3>
+        <p>Latest sports updates will be posted here.</p>
+      </div>
     </section>
 
     <section id="events">
       <h2>🎉 Events & Festivals</h2>
+      <div class="card">
+        <h3>Upcoming Festival</h3>
+        <p>Event details go here. Add upcoming local events in Dordrecht.</p>
+      </div>
     </section>
 
     <section id="weather">
       <h2>☀️ Weather</h2>
+      <div class="card">
+        <h3>Today’s Forecast</h3>
+        <p>Sunny with light winds. High: 24°C, Low: 12°C.</p>
+      </div>
     </section>
 
     <section id="stories">
       <h2>📝 Community Stories</h2>
-    </section>
-
-    <!-- Add News Form -->
-    <section id="addNews">
-      <h2>➕ Submit News</h2>
-      <button id="showFormBtn">Add News</button>
-      <div id="addNewsForm" style="display: none;">
-        <input type="text" id="newsTitle" placeholder="Enter news title" required>
-        <textarea id="newsContent" placeholder="Enter news content" required></textarea>
-        <select id="newsCategory" required>
-          <option value="">-- Select Category --</option>
-          <option value="crime">🚨 Crime</option>
-          <option value="sports">⚽ Sports</option>
-          <option value="events">🎉 Events</option>
-          <option value="weather">☀️ Weather</option>
-          <option value="stories">📝 Stories</option>
-        </select>
-        <button id="submitNewsBtn">Submit</button>
+      <div class="card">
+        <h3>Featured Story</h3>
+        <p>Share inspiring or important local stories here.</p>
       </div>
-    </section>
-
-    <!-- Admin Panel -->
-    <section id="admin">
-      <h2>🔑 Admin Panel (Pending News)</h2>
-      <div id="pendingNews"></div>
     </section>
   </div>
 
@@ -73,6 +198,110 @@
     <p>&copy; 2025 Dordrecht News | Built by Phumlani 🚶🏿‍♂️🐐</p>
   </footer>
 
-  <script src="script.js"></script>
+  <script>
+    const showFormBtn = document.getElementById("showFormBtn");
+    const addNewsForm = document.getElementById("addNewsForm");
+    const cancelBtn = document.getElementById("cancelBtn");
+    const submitNewsBtn = document.getElementById("submitNewsBtn");
+    const adminLogin = document.getElementById("adminLogin");
+    const adminPanel = document.getElementById("adminPanel");
+    const loginBtn = document.getElementById("loginBtn");
+    const pendingNews = document.getElementById("pendingNews");
+
+    let newsArray = [];
+
+    // Show form
+    showFormBtn.addEventListener("click", () => {
+      addNewsForm.style.display = "block";
+      showFormBtn.style.display = "none";
+    });
+
+    // Cancel form
+    cancelBtn.addEventListener("click", () => {
+      addNewsForm.style.display = "none";
+      showFormBtn.style.display = "inline-block";
+    });
+
+    // Submit news
+    submitNewsBtn.addEventListener("click", () => {
+      const title = document.getElementById("newsTitle").value;
+      const content = document.getElementById("newsContent").value;
+
+      if (title && content) {
+        const newsItem = { title, content, status: "pending" };
+        newsArray.push(newsItem);
+
+        alert("✅ News submitted for approval!");
+
+        document.getElementById("newsTitle").value = "";
+        document.getElementById("newsContent").value = "";
+        addNewsForm.style.display = "none";
+        showFormBtn.style.display = "inline-block";
+
+        refreshPending();
+      } else {
+        alert("⚠️ Please fill in all fields!");
+      }
+    });
+
+    // Admin Login
+    window.addEventListener("keydown", (e) => {
+      if (e.ctrlKey && e.key === "a") { // Secret shortcut
+        adminLogin.style.display = "block";
+      }
+    });
+
+    loginBtn.addEventListener("click", () => {
+      const pass = document.getElementById("adminPass").value;
+      if (pass === "goat2025") { // 🔑 your secret password
+        adminLogin.style.display = "none";
+        adminPanel.style.display = "block";
+        refreshPending();
+      } else {
+        alert("❌ Wrong password!");
+      }
+    });
+
+    // Refresh pending list
+    function refreshPending() {
+      pendingNews.innerHTML = "";
+      newsArray.forEach((item, index) => {
+        if (item.status === "pending") {
+          const div = document.createElement("div");
+          div.className = "card";
+          div.innerHTML = `
+            <h3>${item.title}</h3>
+            <p>${item.content}</p>
+            <button class="approveBtn" onclick="approveNews(${index})">Approve</button>
+            <button class="rejectBtn" onclick="rejectNews(${index})">Reject</button>
+          `;
+          pendingNews.appendChild(div);
+        }
+      });
+    }
+
+    // Approve
+    function approveNews(index) {
+      const item = newsArray[index];
+      item.status = "approved";
+      displayNews(item);
+      refreshPending();
+    }
+
+    // Reject
+    function rejectNews(index) {
+      newsArray.splice(index, 1);
+      refreshPending();
+    }
+
+    // Display approved news
+    function displayNews(item) {
+      const section = document.getElementById("stories"); // default place
+      const div = document.createElement("div");
+      div.className = "card";
+      div.innerHTML = `<h3>${item.title}</h3><p>${item.content}</p>`;
+      section.appendChild(div);
+    }
+  </script>
 </body>
 </html>
