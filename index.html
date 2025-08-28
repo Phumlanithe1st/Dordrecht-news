@@ -4,69 +4,38 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dordrecht News</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header>
-    <h1>📰 Dordrecht News</h1>
-    <p>Local news, sports & community updates</p>
+    <h1>Dordrecht News</h1>
+    <p class="date" id="date"></p>
   </header>
 
-  <nav>
-    <a href="#crime">Crime</a>
-    <a href="#sports">Sports</a>
-    <a href="#events">Events</a>
-    <a href="#weather">Weather</a>
-    <a href="#stories">Stories</a>
-  </nav>
+  <main>
+    <!-- 🔥 Featured Hardcoded Article -->
+    <article class="featured">
+      <h2>DORDRECHT CELEBRATES 100 YEARS OF SERVICE</h2>
+      <img src="garage100.jpg" alt="Universal Garage 100 Years">
+      <p>
+        The Greyling family welcomes you to the 100th birthday celebration of Universal Garage. 
+        We look forward to celebrating this milestone with all of our treasured clients, staff, friends and family. 
+        The Dordrecht community has built this business to be what it is, and we appreciate the support and loyalty 
+        that you – and the generations before – have shown towards Universal Garage.
+      </p>
+      <p>
+        It has been an honour to be at your service for the past century, and we look forward to the years to come. 
+        We have been blessed in abundance – to God be the glory! We trust you will enjoy this weekend of celebrations with us.
+      </p>
+      <p><em>– The Greyling Family</em></p>
+    </article>
 
-  <div class="container">
-    <section id="crime">
-      <h2>🚨 Crime News</h2>
-      <div class="card">
-        <h3>Sample Crime Headline</h3>
-        <p>Crime update details go here. Replace this with real stories about Dordrecht.</p>
-      </div>
-    </section>
-
-    <section id="sports">
-      <h2>⚽ Sports</h2>
-      <div class="card">
-        <h3>Local Match Results</h3>
-        <p>Latest sports updates will be posted here.</p>
-      </div>
-    </section>
-
-    <section id="events">
-      <h2>🎉 Events & Festivals</h2>
-      <div class="card">
-        <h3>Upcoming Festival</h3>
-        <p>Event details go here. Add upcoming local events in Dordrecht.</p>
-      </div>
-    </section>
-
-    <section id="weather">
-      <h2>☀️ Weather</h2>
-      <div class="card">
-        <h3>Today’s Forecast</h3>
-        <p>Sunny with light winds. High: 24°C, Low: 12°C.</p>
-      </div>
-    </section>
-
-    <section id="stories">
-      <h2>📝 Community Stories</h2>
-      <div class="card">
-        <h3>Featured Story</h3>
-        <p>Share inspiring or important local stories here.</p>
-      </div>
-    </section>
-  </div>
-
-  <!-- Floating Add Button (admin only later) -->
-  <button id="addNewsBtn">➕ Add News</button>
+    <!-- 🔥 Dynamic user-submitted articles (already in your app) -->
+    <section id="news-list"></section>
+  </main>
 
   <footer>
-    <p>&copy; 2025 Dordrecht News | Built by Phumlani 🚶🏿‍♂️🐐</p>
+    <p>&copy; 2025 Dordrecht News | Powered by the Community</p>
   </footer>
 
   <script src="script.js"></script>
