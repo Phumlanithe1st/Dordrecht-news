@@ -164,7 +164,7 @@
   </div>
 
   <footer>
-    <p>© 2025 Dordrecht News | Built with ❤️ for the community</p>
+    <p>© 2025 Dordrecht News | Built with ❤️ for the community | by phumlani thiya</p>
   </footer>
 
   <script>
@@ -201,3 +201,27 @@
   </script>
 </body>
 </html>
+
+<section id="weather" class="weather">
+  <h2>☀️ Weather</h2>
+  <p id="weather-info">Loading weather...</p>
+</section>
+
+<script>
+  async function fetchWeather(lat = -33.92, lon = 18.42) { // Cape Town coords
+    const resp = await fetch(
+      `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`
+    );
+    const data = await resp.json();
+    return data.current_weather;
+  }
+
+  fetchWeather().then(weather => {
+    const w = weather;
+    document.getElementById("weather-info").textContent =
+      `Now: ${w.temperature}°C, wind ${w.windspeed} km/h, weather code ${w.weathercode}`;
+  }).catch(err => {
+    document.getElementById("weather-info").textContent = '❗ Failed to load weather';
+    console.error(err);
+  });
+</script>
