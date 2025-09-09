@@ -4,55 +4,151 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dordrecht News</title>
-  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Reset & base styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: #f9f9f9;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #222;
+      color: white;
+      padding: 1rem 2rem;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      margin-bottom: 0.3rem;
+    }
+
+    header p {
+      font-size: 0.9rem;
+      color: #bbb;
+    }
+
+    /* Navbar */
+    nav {
+      display: flex;
+      justify-content: center;
+      background: #444;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: white;
+      padding: 0.8rem 1.2rem;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+
+    nav a:hover {
+      background: #666;
+    }
+
+    /* Container */
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    section {
+      background: white;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    section h2 {
+      margin-bottom: 0.8rem;
+      color: #222;
+      font-size: 1.4rem;
+      border-left: 4px solid #ff9800;
+      padding-left: 0.5rem;
+    }
+
+    section p {
+      margin-bottom: 0.5rem;
+    }
+
+    /* Weather box */
+    .weather {
+      background: #e3f2fd;
+      border-left: 4px solid #2196f3;
+    }
+
+    /* Admin panel */
+    .admin {
+      background: #fff3e0;
+      border-left: 4px solid #ff9800;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #222;
+      color: white;
+      margin-top: 2rem;
+    }
+  </style>
 </head>
 <body>
-  <!-- Header -->
   <header>
     <h1>📰 Dordrecht News</h1>
     <p>Local news, sports & community updates</p>
   </header>
 
-  <!-- Navigation -->
-  <nav class="navbar">
-    <a href="#home">🏠 Home</a>
-    <a href="#events">🎉 Events</a>
-    <a href="#weather">☀️ Weather</a>
-    <a href="#stories">✍️ Stories</a>
-    <a href="#admin">⚙️ Admin</a>
+  <nav>
+    <a href="#">🏠 Home</a>
+    <a href="#">🎉 Events</a>
+    <a href="#">☀️ Weather</a>
+    <a href="#">✍️ Stories</a>
+    <a href="#">⚙️ Admin</a>
   </nav>
 
-  <!-- Sections -->
-  <main>
-    <section id="home" class="card">
+  <div class="container">
+    <section>
       <h2>🏠 Welcome</h2>
       <p>Stay updated with the latest news and stories in Dordrecht.</p>
     </section>
 
-    <section id="events" class="card">
+    <section>
       <h2>🎉 Events & Festivals</h2>
-      <h3>Upcoming Festival</h3>
+      <p><strong>Upcoming Festival</strong></p>
       <p>Event details go here. Add upcoming local events in Dordrecht.</p>
     </section>
 
-    <section id="weather" class="card">
+    <section class="weather">
       <h2>☀️ Weather</h2>
-      <h3>Today’s Forecast</h3>
+      <p><strong>Today's Forecast:</strong></p>
       <p>Sunny with light winds. High: 24°C, Low: 12°C.</p>
     </section>
 
-    <section id="stories" class="card">
+    <section>
       <h2>✍️ Community Stories</h2>
-      <h3>Featured Story</h3>
+      <p><strong>Featured Story</strong></p>
       <p>Share inspiring or important local stories here.</p>
     </section>
 
-    <section id="admin" class="card">
+    <section class="admin">
       <h2>⚙️ Admin Panel</h2>
-      <p>Password-protected area (coming soon).</p>
+      <p>Manage site content and updates from here.</p>
     </section>
-  </main>
+  </div>
 
-  <script src="script.js"></script>
+  <footer>
+    <p>© 2025 Dordrecht News | Built with ❤️ for the community-by phumlani thiya</p>
+  </footer>
 </body>
 </html>
