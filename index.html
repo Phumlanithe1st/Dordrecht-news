@@ -36,23 +36,30 @@
       color: #bbb;
     }
 
-    /* Navbar */
+    /* Sticky Navbar */
     nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
       display: flex;
       justify-content: center;
       background: #444;
       flex-wrap: wrap;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
 
     nav a {
       color: white;
       padding: 0.8rem 1.2rem;
       text-decoration: none;
-      transition: background 0.3s;
+      transition: all 0.3s ease;
+      position: relative;
     }
 
     nav a:hover {
-      background: #666;
+      background: #ff9800;
+      color: #222;
+      border-radius: 4px;
     }
 
     /* Container */
@@ -76,10 +83,6 @@
       font-size: 1.4rem;
       border-left: 4px solid #ff9800;
       padding-left: 0.5rem;
-    }
-
-    section p {
-      margin-bottom: 0.5rem;
     }
 
     /* Weather box */
@@ -148,7 +151,7 @@
   </div>
 
   <footer>
-    <p>© 2025 Dordrecht News | Built with ❤️ for the community-by phumlani thiya</p>
+    <p>© 2025 Dordrecht News | Built with ❤️ for the community</p>
   </footer>
 </body>
 </html>
