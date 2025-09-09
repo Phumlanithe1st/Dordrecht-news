@@ -36,6 +36,11 @@
       color: #bbb;
     }
 
+    #clock {
+      font-weight: bold;
+      color: #ff9800;
+    }
+
     /* Sticky Navbar */
     nav {
       position: sticky;
@@ -62,6 +67,12 @@
       border-radius: 4px;
     }
 
+    nav a.active {
+      background: #ff9800;
+      color: #222;
+      border-radius: 4px;
+    }
+
     /* Container */
     .container {
       max-width: 900px;
@@ -75,6 +86,7 @@
       margin-bottom: 1.5rem;
       border-radius: 8px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      scroll-margin-top: 70px; /* offset for sticky navbar */
     }
 
     section h2 {
@@ -110,41 +122,42 @@
   <header>
     <h1>📰 Dordrecht News</h1>
     <p>Local news, sports & community updates</p>
+    <p id="clock"></p>
   </header>
 
   <nav>
-    <a href="#">🏠 Home</a>
-    <a href="#">🎉 Events</a>
-    <a href="#">☀️ Weather</a>
-    <a href="#">✍️ Stories</a>
-    <a href="#">⚙️ Admin</a>
+    <a href="#welcome">🏠 Home</a>
+    <a href="#events">🎉 Events</a>
+    <a href="#weather">☀️ Weather</a>
+    <a href="#stories">✍️ Stories</a>
+    <a href="#admin">⚙️ Admin</a>
   </nav>
 
   <div class="container">
-    <section>
+    <section id="welcome">
       <h2>🏠 Welcome</h2>
       <p>Stay updated with the latest news and stories in Dordrecht.</p>
     </section>
 
-    <section>
+    <section id="events">
       <h2>🎉 Events & Festivals</h2>
       <p><strong>Upcoming Festival</strong></p>
       <p>Event details go here. Add upcoming local events in Dordrecht.</p>
     </section>
 
-    <section class="weather">
+    <section id="weather" class="weather">
       <h2>☀️ Weather</h2>
       <p><strong>Today's Forecast:</strong></p>
       <p>Sunny with light winds. High: 24°C, Low: 12°C.</p>
     </section>
 
-    <section>
+    <section id="stories">
       <h2>✍️ Community Stories</h2>
       <p><strong>Featured Story</strong></p>
       <p>Share inspiring or important local stories here.</p>
     </section>
 
-    <section class="admin">
+    <section id="admin" class="admin">
       <h2>⚙️ Admin Panel</h2>
       <p>Manage site content and updates from here.</p>
     </section>
@@ -153,5 +166,38 @@
   <footer>
     <p>© 2025 Dordrecht News | Built with ❤️ for the community</p>
   </footer>
+
+  <script>
+    // 1. Live Clock ⏰
+    function updateClock() {
+      const now = new Date();
+      const timeString = now.toLocaleTimeString();
+      const dateString = now.toLocaleDateString();
+      document.getElementById("clock").textContent = dateString + " | " + timeString;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // 2. Highlight Active Nav Link 🟠
+    const sections = document.querySelectorAll("section");
+    const navLinks = document.querySelectorAll("nav a");
+
+    window.addEventListener("scroll", () => {
+      let current = "";
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 80;
+        if (pageYOffset >= sectionTop) {
+          current = section.getAttribute("id");
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === "#" + current) {
+          link.classList.add("active");
+        }
+      });
+    });
+  </script>
 </body>
 </html>
