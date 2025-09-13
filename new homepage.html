@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dordrecht News - Latest Local Updates</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Feather Icons CDN for clean icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<body>
+    <h1>Dordrecht News</h1>
+    
+    <!-- Navigation -->
+    <nav style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 20px 0;">
+        <a href="index.html" style="margin-right: 15px; text-decoration: none; color: #007bff; font-weight: bold;">🏠 Home</a>
+        <a href="crime.html" style="margin-right: 15px; text-decoration: none; color: #007bff;">🚨 Crime</a>
+        <a href="weather.html" style="margin-right: 15px; text-decoration: none; color: #007bff;">🌦 Weather</a>
+        <a href="events.html" style="margin-right: 15px; text-decoration: none; color: #007bff;">🎉 Events</a>
+        <a href="stories.html" style="margin-right: 15px; text-decoration: none; color: #007bff;">📰 Stories</a>
+        <a href="submit.html" style="text-decoration: none; color: #007bff;">✍️ Submit</a>
+    </nav>
+
+    <!-- Submit News Form -->
+    <h2>Submit Your News</h2>
+    <form id="news-form">
+        <input type="text" id="news-title" placeholder="News Title" required>
+        <textarea id="news-content" placeholder="News Content" required></textarea>
+        <button type="submit">Submit News</button>
+    </form>
+
+    <hr>
+
+    <!-- Admin Panel -->
+    <div id="admin-login" style="display: block;">
+        <h2>Admin Login</h2>
+        <div class="login-container">
+            <input type="password" id="admin-password" placeholder="Enter admin password..." />
+            <button id="login-btn">Login</button>
+        </div>
+        <p id="login-error" style="color: red; display: none;">Incorrect password!</p>
+    </div>
+    
+    <div id="admin-panel-content" style="display: none;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+            <h2 style="margin: 0;">Admin Panel</h2>
+            <button id="logout-btn" style="background: #dc3545; color: white; padding: 8px 16px; border: none; border-radius: 4px; cursor: pointer;">Logout</button>
+        </div>
+        <div class="news-input-container">
+            <input type="text" id="news-input" placeholder="Enter news..." />
+            <button id="emoji-btn" class="emoji-button">😀</button>
+        </div>
+    </div>
+    <div id="emoji-picker" class="emoji-picker" style="display: none;">
+        <div class="emoji-grid">
+            <span class="emoji-item">😀</span>
+            <span class="emoji-item">😂</span>
+            <span class="emoji-item">🥰</span>
+            <span class="emoji-item">😎</span>
+            <span class="emoji-item">🤔</span>
+            <span class="emoji-item">😱</span>
+            <span class="emoji-item">😢</span>
+            <span class="emoji-item">😡</span>
+            <span class="emoji-item">🎉</span>
+            <span class="emoji-item">🎊</span>
+            <span class="emoji-item">🏆</span>
+            <span class="emoji-item">⚽</span>
+            <span class="emoji-item">🏀</span>
+            <span class="emoji-item">🎯</span>
+            <span class="emoji-item">🌟</span>
+            <span class="emoji-item">⭐</span>
+            <span class="emoji-item">🌈</span>
+            <span class="emoji-item">☀️</span>
+            <span class="emoji-item">⛈️</span>
+            <span class="emoji-item">🌧️</span>
+            <span class="emoji-item">❄️</span>
+            <span class="emoji-item">🔥</span>
+            <span class="emoji-item">💧</span>
+            <span class="emoji-item">🌊</span>
+            <span class="emoji-item">🍕</span>
+            <span class="emoji-item">🍔</span>
+            <span class="emoji-item">🎂</span>
+            <span class="emoji-item">☕</span>
+            <span class="emoji-item">🏠</span>
+            <span class="emoji-item">🏪</span>
+            <span class="emoji-item">🏫</span>
+            <span class="emoji-item">🚗</span>
+            <span class="emoji-item">✅</span>
+            <span class="emoji-item">❌</span>
+            <span class="emoji-item">⚠️</span>
+            <span class="emoji-item">🔔</span>
+        </div>
+    </div>
+    <button id="add-news-btn">Add News</button>
+    <hr>
+    <button id="show-news-btn">Show Today's News</button>
+    <div id="news-container"></div>
+    
+    <div id="trash-section">
+        <h2>🗑️ Trash (<span id="trash-count">0</span>)</h2>
+        <button onclick="displayTrash()">Show Trash Items</button>
+        <div id="trash-container"></div>
+    </div>
+    <button id="delete-all-trash-btn" onclick="clearAllTrash()" style="display:none; background: darkred; color: white; padding: 6px 12px; border: none; border-radius: 5px; cursor: pointer; margin-top: 10px;">
+        🗑️ Delete All Trash
+    </button>
+
+    <audio id="beep-sound" src="static/beep.mp3" preload="auto"></audio>
+
+    <!-- Admin Panel -->
+    <div id="admin-panel" style="display:none;">
+        <h2>Pending News for Approval</h2>
+        <div id="pending-news-container"></div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        function search() {
+            const input = document.getElementById("searchInput").value.toLowerCase();
+            const content = document.querySelector("main").innerText.toLowerCase();
+            if (input === "") {
+                alert("Type something to search.");
+                return;
+            }
+            if (content.includes(input)) {
+                alert("Match found on this page!");
+            } else {
+                alert("No match found here.");
+            }
+        }
+    </script>
+    
+    <script>
+        // Temporary example approved news (until we add an admin system)
+        let newsData = JSON.parse(localStorage.getItem("approvedNews")) || [
+            {
+                title: "Festival Lights Up Dordrecht",
+                content: "Crowds gather for the annual riverfront festival with fireworks and music.",
+                date: "2025-08-10"
+            },
+            {
+                title: "Local Sports Team Wins Championship",
+                content: "Dordrecht Eagles clinch their first-ever league title in a nail-biting final.",
+                date: "2025-08-09"
+            }
+        ];
+
+        // Save sample news in localStorage if empty
+        if (!localStorage.getItem("approvedNews")) {
+            localStorage.setItem("approvedNews", JSON.stringify(newsData));
+        }
+
+        // Function to display approved news
+        function displayApprovedNews() {
+            const container = document.getElementById("news-container");
+            container.innerHTML = ""; // Clear old content
+
+            if (newsData.length === 0) {
+                container.innerHTML = "<p>No approved news available yet.</p>";
+                return;
+            }
+
+            newsData.forEach(item => {
+                let card = document.createElement("div");
+                card.classList.add("news-card");
+                card.innerHTML = `
+                    <h3>${item.title}</h3>
+                    <p>${item.content}</p>
+                    <small>${item.date}</small>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Attach event listener to button
+        document.getElementById("show-news-btn").addEventListener("click", displayApprovedNews);
+    </script>
+</body>
+</html>
