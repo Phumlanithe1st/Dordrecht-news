@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Admin — Dordrecht News</title>
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="app.js"></script>
+</head>
+<body data-page="admin">
+  <header>
+    <div class="header-logo">📰</div>
+    <div>
+      <div class="header-title">Dordrecht News</div>
+      <div class="header-sub">Admin panel</div>
+    </div>
+  </header>
+
+  <nav class="topnav">
+    <a href="index.html">🏠 Home</a>
+    <a href="events.html">🎉 Events</a>
+    <a href="weather.html">☀️ Weather</a>
+    <a href="stories.html">✍️ Stories</a>
+    <a href="crime.html">🚨 Crime</a>
+    <a href="sports.html">⚽ Sports</a>
+    <a class="admin-link" href="#" title="Admin">⚙️ Admin</a>
+  </nav>
+
+  <div class="container">
+    <main id="main-content">
+      <!-- admin UI will be built by app.js renderAdminPage() -->
+      <div class="card">
+        <p class="small">If you see "You must log in", click the Admin button in the nav and enter your password. Admin stays unlocked for this browser session.</p>
+      </div>
+    </main>
+  </div>
+
+  <footer style="padding:18px 12px;text-align:center;background:linear-gradient(90deg,var(--brand),var(--accent));color:#fff;margin-top:18px;">
+    © 2025 Dordrecht News | Admin
+  </footer>
+</body>
+</html>
