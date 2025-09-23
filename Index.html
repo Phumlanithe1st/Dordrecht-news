@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Dordrecht News</title>
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="app.js"></script>
+</head>
+<body data-page="home">
+  <header>
+    <div class="header-logo">📰</div>
+    <div>
+      <div class="header-title">Dordrecht News</div>
+      <div class="header-sub">Local news, sports & community updates</div>
+    </div>
+  </header>
+
+  <nav class="topnav">
+    <a href="index.html">🏠 Home</a>
+    <a href="events.html">🎉 Events</a>
+    <a href="weather.html">☀️ Weather</a>
+    <a href="stories.html">✍️ Stories</a>
+    <a href="crime.html">🚨 Crime</a>
+    <a href="sports.html">⚽ Sports</a>
+    <a class="admin-link" href="#" title="Admin">⚙️ Admin</a>
+  </nav>
+
+  <div class="container">
+    <div class="row">
+      <div class="search">
+        <input id="searchInput" placeholder="Search news, titles, stories..." />
+      </div>
+      <button id="showFormBtn" class="btn btn-primary">➕ Add</button>
+      <button id="showTodayBtn" class="btn btn-ghost" title="Show today's published">Today</button>
+    </div>
+
+    <main id="main-content">
+      <!-- app.js renders sections here -->
+    </main>
+  </div>
+
+  <!-- Add News form (modal-like) -->
+  <div id="addNewsForm" aria-hidden="true" class="hidden">
+    <h3>Add News</h3>
+    <input id="newsTitle" placeholder="Title (required)" />
+    <select id="newsCategory">
+      <option value="Crime">Crime</option>
+      <option value="Sports">Sports</option>
+      <option value="Events">Events</option>
+      <option value="Weather">Weather</option>
+      <option value="Stories">Stories</option>
+    </select>
+    <textarea id="newsContent" rows="4" placeholder="Content (required)"></textarea>
+    <input id="newsDate" type="date" class="small" value="">
+    <div style="display:flex;gap:8px;margin-top:6px">
+      <button id="submitNewsBtn" class="btn btn-primary">✅ Submit</button>
+      <button id="cancelBtn" class="btn btn-ghost">❌ Cancel</button>
+    </div>
+    <div class="small" style="margin-top:8px">All submissions are reviewed by admin before publishing.</div>
+  </div>
+
+  <footer style="padding:18px 12px;text-align:center;background:linear-gradient(90deg,var(--brand),var(--accent));color:#fff;margin-top:18px;">
+    © 2025 Dordrecht News | Built by Phumlani
+  </footer>
+</body>
+</html>
